@@ -14,13 +14,14 @@ import { getlangCode } from "@/utils/language";
 
 const MainStore = useMainStore();
 const { langCode, SideMenuVisible } = storeToRefs(MainStore);
-const { spinnerOff, setOption, getLanguage } = MainStore;
+const { spinnerOff, setOption, getLanguage, getMydrive } = MainStore;
 
 // const SideMenuVisible = ref(true);
 
 langCode.value = getlangCode();
 getLanguage();
 setOption();
+getMydrive();
 const loadTheme = async () => {
   const theme = localStorage.getItem("NEXENTIRE-THEME");
   if (theme === "dark-mode") {

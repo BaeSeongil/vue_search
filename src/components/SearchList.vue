@@ -702,132 +702,22 @@ watch(lnbActive, () => {
   }
 });
 
-const fileDown = async (data, info) => {
-  if (info === "중앙") {
-    const url = `https://kms.nexentire.com/my/files/${data.id}/content`;
+// const fileDown = async (data, info) => {
+//   if (info === "중앙") {
+//     const url = `https://kms.nexentire.com/my/files/${data.id}/content`;
 
-    const link = document.createElement("a");
-    link.href = url;
-    link.target = "_blank";
-    link.download = ""; // You can set a filename here, or leave it empty to use the default filename
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  }
-};
-
-// const keySize = 128;
-// const iterationCount = 1000;
-// const iv = "F27D5C9927726BCEFE7510B1BDD3D137";
-// const salt = "3FF2EC019C627B945225DEBAD71A01B6985FE84C95A70EB132882F88C0A59A55";
-// const myDriveURL = "https://kms.nexentire.com";
-
-// class AesUtil {
-//   constructor(keySize, iterationCount) {
-//     this.keySize = keySize / 32;
-//     this.iterationCount = iterationCount;
+//     const link = document.createElement("a");
+//     link.href = url;
+//     link.target = "_blank";
+//     link.download = ""; // You can set a filename here, or leave it empty to use the default filename
+//     document.body.appendChild(link);
+//     link.click();
+//     document.body.removeChild(link);
 //   }
-
-//   generateKey(salt, passPhrase) {
-//     return CryptoJS.PBKDF2(passPhrase, CryptoJS.enc.Hex.parse(salt), {
-//       keySize: this.keySize,
-//       iterations: this.iterationCount,
-//     });
-//   }
-
-//   encrypt(salt, iv, passPhrase, plainText) {
-//     const key = this.generateKey(salt, passPhrase);
-//     const encrypted = CryptoJS.AES.encrypt(plainText, key, {
-//       iv: CryptoJS.enc.Hex.parse(iv),
-//     });
-//     return encrypted;
-//   }
-
-//   decrypt(salt, iv, passPhrase, cipherText) {
-//     const key = this.generateKey(salt, passPhrase);
-//     const cipherParams = CryptoJS.lib.CipherParams.create({
-//       ciphertext: CryptoJS.enc.Base64.parse(cipherText),
-//     });
-//     const decrypted = CryptoJS.AES.decrypt(cipherParams, key, {
-//       iv: CryptoJS.enc.Hex.parse(iv),
-//     });
-//     return decrypted.toString(CryptoJS.enc.Utf8);
-//   }
-// }
-
-// const myDriveLogin = () => {
-//   const aesUtil = new AesUtil(keySize, iterationCount);
-
-//   const key = new Date().getTime().toString();
-
-//   let enc_id = aesUtil.encrypt(
-//     salt,
-//     iv,
-//     key,
-//     userInfo.value.OrgDbUserDocumentData.empno
-//   );
-//   enc_id = enc_id.ciphertext.toString(CryptoJS.enc.Base64);
-//   alert("암호화아이디: " + enc_id + " , 사용한 key : " + key);
-
-//   const dec_id = aesUtil.decrypt(salt, iv, key, enc_id);
-//   alert("enc_id를 복호화: " + dec_id + " , 사용한 key : " + key);
-
-//   const url = new URL(myDriveURL + "/login/index.jsp");
-//   url.searchParams.append("user_id", encodeURIComponent(enc_id));
-//   url.searchParams.append("key", key);
-//   url.searchParams.append("ctype", "PORTAL");
-//   url.searchParams.append("lang", langCode.value.toUpperCase());
-
-//   window.open(url.toString());
 // };
-
-const encryptText = (salt, iv, passPhrase, plainText) => {
-  var key = generateKey(salt, passPhrase);
-  var encrypted = CryptoJS.AES.encrypt(plainText, key, {
-    iv: CryptoJS.enc.Hex.parse(iv),
-  });
-  return encrypted.ciphertext.toString(CryptoJS.enc.Base64);
-};
-
-const decryptText = (salt, iv, passPhrase, cipherText) => {
-  var key = generateKey(salt, passPhrase);
-  var cipherParams = CryptoJS.lib.CipherParams.create({
-    ciphertext: CryptoJS.enc.Base64.parse(cipherText),
-  });
-  var decrypted = CryptoJS.AES.decrypt(cipherParams, key, {
-    iv: CryptoJS.enc.Hex.parse(iv),
-  });
-  return decrypted.toString(CryptoJS.enc.Utf8);
-};
-
-const generateKey = function (salt, passPhrase) {
-  const keySize = 128;
-  const iterationCount = 1000;
-  var key = CryptoJS.PBKDF2(passPhrase, CryptoJS.enc.Hex.parse(salt), {
-    keySize: keySize,
-    iterations: iterationCount,
-  });
-  return key;
-};
 
 const openUrl = async (data, info, name) => {
   if (info === "중앙") {
-    const key = new Date().getTime().toString();
-
-    const iv = "F27D5C9927726BCEFE7510B1BDD3D137";
-    const salt =
-      "3FF2EC019C627B945225DEBAD71A01B6985FE84C95A70EB132882F88C0A59A55";
-
-    const id = encryptText(
-      salt,
-      iv,
-      key,
-      userInfo.value.OrgDbUserDocumentData.empno
-    );
-    const url = `http://kms.nexentire.com/login/index.jsp?user_id=${encodeURIComponent(
-      id
-    )}&key=${key}&ctype=PORTAL&lang=${langCode.value.toUpperCase()}`;
-    window.open(url);
     if (name === "explorer") {
       const url = `https://kms.nexentire.com/my/files/${data.id}/content`;
       const link = document.createElement("a");

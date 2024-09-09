@@ -82,6 +82,17 @@ export const useMainStore = defineStore("main", () => {
   const langCode = ref(null);
   const SideMenuVisible = ref(true);
 
+  const getMydrive = async () => {
+    const option = {
+      url: `ematenapi/gw/search/api/auth?type=mydrive`
+    };
+    console.log("123");
+    const { data: res } = await http.request(option);
+
+    console.log("res", res);
+
+    return res
+  }
   // 검색어
   const searchvalue = ref(null);
   // 결과 내 재검색
@@ -326,6 +337,7 @@ export const useMainStore = defineStore("main", () => {
     boardList,
     boardTotal,
     research,
-    reValue
+    reValue,
+    getMydrive
   };
 });
