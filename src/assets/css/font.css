@@ -1,0 +1,66 @@
+/* Pretendard */
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../fonts/Pretendard-Bold.eot');
+    src: url('../fonts/Pretendard-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Pretendard-Bold.woff2') format('woff2'),
+        url('../fonts/Pretendard-Bold.woff') format('woff'),
+        url('../fonts/Pretendard-Bold.ttf') format('truetype'),
+        url('../fonts/Pretendard-Bold.svg#Pretendard-Bold') format('svg');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../fonts/Pretendard-SemiBold.eot');
+    src: url('../fonts/Pretendard-SemiBold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Pretendard-SemiBold.woff2') format('woff2'),
+        url('../fonts/Pretendard-SemiBold.woff') format('woff'),
+        url('../fonts/Pretendard-SemiBold.ttf') format('truetype'),
+        url('../fonts/Pretendard-SemiBold.svg#Pretendard-SemiBold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../fonts/Pretendard-Medium.eot');
+    src: url('../fonts/Pretendard-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Pretendard-Medium.woff2') format('woff2'),
+        url('../fonts/Pretendard-Medium.woff') format('woff'),
+        url('../fonts/Pretendard-Medium.ttf') format('truetype'),
+        url('../fonts/Pretendard-Medium.svg#Pretendard-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../fonts/Pretendard-Regular.eot');
+    src: url('../fonts/Pretendard-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Pretendard-Regular.woff2') format('woff2'),
+        url('../fonts/Pretendard-Regular.woff') format('woff'),
+        url('../fonts/Pretendard-Regular.ttf') format('truetype'),
+        url('../fonts/Pretendard-Regular.svg#Pretendard-Regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('../fonts/Pretendard-Light.eot');
+    src: url('../fonts/Pretendard-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/Pretendard-Light.woff2') format('woff2'),
+        url('../fonts/Pretendard-Light.woff') format('woff'),
+        url('../fonts/Pretendard-Light.ttf') format('truetype'),
+        url('../fonts/Pretendard-Light.svg#Pretendard-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}

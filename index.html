@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXEN TIRE SEARCH</title>
+  <style>
+    .loading_video {
+      display: inline-block;
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      top: 47%;
+      left: 50%;
+      z-index: 106;
+    }
+
+    .loading_video div {
+      display: inline-block;
+      position: absolute;
+      left: 6px;
+      width: 13px;
+      background: #7C3AED;
+      animation: loading_video 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+    }
+
+    .loading_video div:nth-child(1) {
+      left: 6px;
+      animation-delay: -0.24s;
+    }
+
+    .loading_video div:nth-child(2) {
+      left: 26px;
+      animation-delay: -0.12s;
+    }
+
+    .loading_video div:nth-child(3) {
+      left: 45px;
+      animation-delay: 0s;
+    }
+
+    @keyframes loading_video {
+      0% {
+        top: 6px;
+        height: 51px;
+      }
+
+      50%,
+      100% {
+        top: 19px;
+        height: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" style="height: 100%;"></div>
+  <script type="module" src="/src/main.js"></script>
+  <div class="spinner loading_video">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</body>
+
+</html>

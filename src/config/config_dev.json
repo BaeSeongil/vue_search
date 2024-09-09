@@ -1,0 +1,41 @@
+{
+    "datetime_displaytype": "1",
+    "package": "dev",
+    "fullorginfo": {
+        "person": [
+            "type",
+            "username",
+            "empno",
+            "notesid",
+            "orgcode",
+            "porgcode",
+            "dutyname",
+            "dutycode",
+            "posname",
+            "poscode",
+            "comcode",
+            "orgname",
+            "comname",
+            "comalias",
+            "dispgrade",
+            "fullorgname",
+            "shortname"
+        ],
+        "department": [
+            "type",
+            "orgname",
+            "fullorgname",
+            "fullorgcode",
+            "orgcode",
+            "porgcode",
+            "",
+            "",
+            "",
+            "",
+            "comcode",
+            "dorgname",
+            "comname"
+        ]
+    },
+    "commentDepth": 1
+}
