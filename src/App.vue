@@ -21,7 +21,7 @@ const { spinnerOff, setOption, getLanguage, getMydrive } = MainStore;
 langCode.value = getlangCode();
 getLanguage();
 setOption();
-getMydrive();
+// getMydrive();
 const loadTheme = async () => {
   const theme = localStorage.getItem("NEXENTIRE-THEME");
   if (theme === "dark-mode") {

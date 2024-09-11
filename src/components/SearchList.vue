@@ -122,7 +122,10 @@
                   :key="'appro' + index"
                 >
                   <div class="title-wrap flex-con p-be">
-                    [<span v-html="processContent(appro.aprvFormTitle)"></span>]
+                    [<span
+                      v-html="processContent(Lang(appro.sFormTitle))"
+                    ></span
+                    >]
                     <p
                       @click="openUrl(appro, '결재')"
                       style="cursor: pointer"
@@ -701,20 +704,6 @@ watch(lnbActive, () => {
     row4.value = false;
   }
 });
-
-// const fileDown = async (data, info) => {
-//   if (info === "중앙") {
-//     const url = `https://kms.nexentire.com/my/files/${data.id}/content`;
-
-//     const link = document.createElement("a");
-//     link.href = url;
-//     link.target = "_blank";
-//     link.download = ""; // You can set a filename here, or leave it empty to use the default filename
-//     document.body.appendChild(link);
-//     link.click();
-//     document.body.removeChild(link);
-//   }
-// };
 
 const openUrl = async (data, info, name) => {
   if (info === "중앙") {

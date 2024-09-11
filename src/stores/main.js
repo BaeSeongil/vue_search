@@ -76,6 +76,7 @@ export const useMainStore = defineStore("main", () => {
       // 로그인이 정상적일때,
       login = true;
       userInfo.value = data;
+      await getMydrive();
     }
     return login;
   };
@@ -83,13 +84,30 @@ export const useMainStore = defineStore("main", () => {
   const SideMenuVisible = ref(true);
 
   const getMydrive = async () => {
-    const option = {
-      url: `ematenapi/gw/search/api/auth?type=mydrive`
-    };
-    console.log("123");
-    const { data: res } = await http.request(option);
+    const keySize = 128;
+    const iterations = 1000;
+    const iterationCount = 1000
+    const salt = "3FF2EC019C627B945225DEBAD71A01B6985FE84C95A70EB132882F88C0A59A55";
+    const iv = "F27D5C9927726BCEFE7510B1BDD3D137";
 
-    console.log("res", res);
+    const id = userInfo.value?.OrgDbUserDocumentData.empno;
+    const key = new Date().getTime().toString();	// 시간값이 나온다. 이전 예제에서 Java System.currentTimeMillis()와 동일
+    const myDriveURL = "https://kms.nexentire.com";
+    const aesUtil = new AesUtil(keySize, iterationCount);
+    const enc_id = aesUtil.encrypt(salt, iv, key, id);
+    const dec_id = aesUtil.decrypt(salt, iv, key, enc_id);
+
+    const lang = langCode.value.toUpperCase();
+    const url = `${myDriveURL}/login/index.jsp?user_id=${encodeURIComponent(enc_id)}&key=${key}&ctype=PORTAL&lang=${lang}`
+    // console.log("url", url);
+
+    const option = {
+      url: url
+    };
+
+    const res = await http.post(option);
+
+    // console.log("res", res);
 
     return res
   }
