@@ -122,10 +122,9 @@
                   :key="'appro' + index"
                 >
                   <div class="title-wrap flex-con p-be">
-                    [<span
-                      v-html="processContent(Lang(appro.sFormTitle))"
-                    ></span
-                    >]
+                    <span class="formtitle"
+                      >[ {{ Lang(appro.sFormTitle) }} ]</span
+                    >
                     <p
                       @click="openUrl(appro, '결재')"
                       style="cursor: pointer"
@@ -150,15 +149,26 @@
                     v-for="(file, f) in appro.fileName.split('Ψ')"
                     :key="'file' + f"
                   >
-                    <a
-                      ><span class="file flex-con jc-left ellipse"
-                        ><img
-                          src="../assets/images/subpage/icon_file_xls.svg"
-                          class="screen-mode-img"
-                          alt="" /><span
-                          v-html="processContent(file)"
-                        ></span></span
-                    ></a>
+                    <template v-if="appro.fileName && appro.fileName !== ''">
+                      <a
+                        ><span class="file flex-con jc-left ellipse">
+                          <span
+                            :class="
+                              'ico_' +
+                              fileType(
+                                appro.fileExt.replaceAll(' ', '').split('Ψ')[f]
+                              )
+                            "
+                          ></span>
+                          <!-- <img
+                            :src="`@/assets/images/subpage/ico_${
+                              appro.fileExt.replaceAll(' ', '').split('Ψ')[f]
+                            }.svg`"
+                            class="screen-mode-img"
+                            alt="" /> -->
+                          <span v-html="processContent(file)"></span></span
+                      ></a>
+                    </template>
                   </div>
                   <p
                     class="content ellipse lh2"
@@ -198,8 +208,7 @@
                   :key="'bbs' + index"
                 >
                   <div class="title-wrap flex-con p-be">
-                    [<span>{{ Lang(bbs.boardName) }}</span
-                    >]
+                    <span class="formtitle">[ {{ Lang(bbs.boardName) }} ]</span>
                     <p
                       class="title ellipse"
                       style="cursor: pointer"
@@ -221,15 +230,20 @@
                     v-for="(file, f) in bbs.fileName.split('Ψ')"
                     :key="'file' + f"
                   >
-                    <a
-                      ><span class="file flex-con jc-left ellipse"
-                        ><img
-                          src="../assets/images/subpage/icon_file_xls.svg"
-                          class="screen-mode-img"
-                          alt="" /><span
-                          v-html="processContent(file)"
-                        ></span></span
-                    ></a>
+                    <template v-if="bbs.fileName && bbs.fileName !== ''">
+                      <a
+                        ><span class="file flex-con jc-left ellipse">
+                          <span
+                            :class="
+                              'ico_' +
+                              fileType(
+                                bbs.fileExt.replaceAll(' ', '').split('Ψ')[f]
+                              )
+                            "
+                          ></span
+                          ><span v-html="processContent(file)"></span></span
+                      ></a>
+                    </template>
                   </div>
                   <p
                     class="content ellipse lh2"
@@ -298,11 +312,9 @@
                       style="cursor: pointer"
                     >
                       <a
-                        ><span class="file flex-con jc-left ellipse"
-                          ><img
-                            src="../assets/images/subpage/icon_file_xls.svg"
-                            class="screen-mode-img"
-                            alt="" /><span
+                        ><span class="file flex-con jc-left ellipse">
+                          <span :class="'ico_' + fileType(item.ext)"></span>
+                          <span
                             v-html="processContent(item.fileName)"
                           ></span></span
                       ></a>
@@ -374,11 +386,11 @@
                       </div>
                       <div class="file-wrap">
                         <a
-                          ><span class="file flex-con jc-left ellipse"
-                            ><img
-                              src="../assets/images/subpage/icon_file_xls.svg"
-                              class="screen-mode-img"
-                              alt="" /><span
+                          ><span class="file flex-con jc-left ellipse">
+                            <span
+                              :class="'ico_' + fileType(item.fileExt)"
+                            ></span>
+                            <span
                               v-html="processContent(item.fileName)"
                             ></span></span
                         ></a>
@@ -721,35 +733,17 @@ const openUrl = async (data, info, name) => {
       );
     }
   } else if (info === "표준") {
-    // Create a form dynamically
-    let form = document.createElement("form");
-    form.method = "POST";
-    form.action = `http://172.17.31.167:8088/xclickr31_nxt/cef/edms/cefEdmsSearchReceive.jsp`;
+    // 문서 뷰어
+    const url = `https://stddoc.nexentire.com/xclickr31_nxt/CefSrchImageViewDispatcher?ecmdocid=${data.docid}&userid=${userInfo.value?.OrgDbUserDocumentData.empno}&locale=${langCode.value}`;
 
-    // Add hidden fields to the form with the POST data
-    let docIdInput = document.createElement("input");
-    docIdInput.type = "hidden";
-    docIdInput.name = "docId";
-    docIdInput.value = data.docId;
-    form.appendChild(docIdInput);
-
-    let useridInput = document.createElement("input");
-    useridInput.type = "hidden";
-    useridInput.name = "userid";
-    useridInput.value = userInfo.value.OrgDbUserDocumentData.empno;
-    form.appendChild(useridInput);
-
-    // Append the form to the body
-    document.body.appendChild(form);
-
-    // Open the form in a new window
-    form.target = "_blank";
-
-    // Submit the form
-    form.submit();
-
-    // Remove the form from the DOM
-    document.body.removeChild(form);
+    // const url = `https://kms.nexentire.com/standard/downdoc/${data.docid}?drmDec=false&userid=${userInfo.value?.OrgDbUserDocumentData.empno}`;
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = ""; // You can set a filename here, or leave it empty to use the default filename
+    link.target = "_blank";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   } else if (info === "결재") {
     const doc = data.dbPath.replaceAll("\\", "/");
     window.open(
@@ -759,10 +753,29 @@ const openUrl = async (data, info, name) => {
     window.open(`/vboard/boardread?key_unid=${data.docid}&popup=1&pre=1`);
   }
 };
+const fileType = (file) => {
+  if (file === "pptx" || file === "ppt") {
+    return "ppt";
+  } else if (file === "xlsx" || file === "xls") {
+    return "xls";
+  } else if (file === "doc" || file === "docx") {
+    return "doc";
+  } else if (file === "jpg" || file === "jpeg" || file === "png") {
+    return "jpg";
+  } else if (file === "pdf" || file === "hwp") {
+    return file;
+  } else {
+    return "zip";
+  }
+};
 </script>
 
 <style scoped>
 .more {
   cursor: pointer;
+}
+.formtitle {
+  font-size: 18px;
+  font-weight: bold;
 }
 </style>

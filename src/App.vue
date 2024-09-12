@@ -21,7 +21,7 @@ const { spinnerOff, setOption, getLanguage, getMydrive } = MainStore;
 langCode.value = getlangCode();
 getLanguage();
 setOption();
-// getMydrive();
+// const myurl = await getMydrive();
 const loadTheme = async () => {
   const theme = localStorage.getItem("NEXENTIRE-THEME");
   if (theme === "dark-mode") {
@@ -45,6 +45,8 @@ onMounted(async () => {
   if (isTabletOrIPad) {
     SideMenuVisible.value = true;
   }
+
+  // await getMydrive();
 });
 
 import { useRoute } from "vue-router";

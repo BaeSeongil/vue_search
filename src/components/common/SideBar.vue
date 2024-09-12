@@ -4,7 +4,7 @@
       <!-- 메뉴 펼친 상태 디폴트 -->
       <div class="menu-head">
         <p class="menu-head-tit">
-          {{ getLang(language.vue_search?.title.document, "문서분류") }}
+          {{ getLang(language?.vue_search?.title.document, "문서분류") }}
         </p>
         <button
           type="button"
@@ -22,7 +22,7 @@
               style="cursor: pointer"
               @click="lnbChange('all')"
               :class="{ active: lnbActive === 'all' }"
-              >{{ getLang(language.vue_search?.title.full, "전체 문서") }}</a
+              >{{ getLang(language?.vue_search?.title.full, "전체 문서") }}</a
             >
           </li>
           <li class="depth1">
@@ -30,7 +30,9 @@
               style="cursor: pointer"
               @click="lnbChange('appro')"
               :class="{ active: lnbActive === 'appro' }"
-              >{{ getLang(language.vue_search?.title.approval, "전자결재") }}</a
+              >{{
+                getLang(language?.vue_search?.title.approval, "전자결재")
+              }}</a
             >
           </li>
           <li class="depth1">
@@ -38,7 +40,7 @@
               style="cursor: pointer"
               @click="lnbChange('board')"
               :class="{ active: lnbActive === 'board' }"
-              >{{ getLang(language.vue_search?.title.board, "게시판") }}</a
+              >{{ getLang(language?.vue_search?.title.board, "게시판") }}</a
             >
           </li>
           <li class="depth1">
@@ -46,7 +48,9 @@
               style="cursor: pointer"
               @click="lnbChange('doc1')"
               :class="{ active: lnbActive === 'doc1' }"
-              >{{ getLang(language.vue_search?.title.centeral, "문서중앙") }}</a
+              >{{
+                getLang(language?.vue_search?.title.centeral, "문서중앙")
+              }}</a
             >
           </li>
           <li class="depth1">
@@ -54,7 +58,9 @@
               style="cursor: pointer"
               @click="lnbChange('doc2')"
               :class="{ active: lnbActive === 'doc2' }"
-              >{{ getLang(language.vue_search?.title.standard, "표준문서") }}</a
+              >{{
+                getLang(language?.vue_search?.title.standard, "표준문서")
+              }}</a
             >
           </li>
         </ul>

@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { useRoute } from 'vue-router'
+import AesUtil from '@/assets/js/AesUtil.js'
 
 const route = useRoute()
 
@@ -40,7 +41,7 @@ export const useMainStore = defineStore("main", () => {
     return config.value;
   };
 
-  const language = ref({});
+  const language = ref(null);
   const getLanguage = async () => {
     try {
       const option = {
@@ -59,7 +60,6 @@ export const useMainStore = defineStore("main", () => {
   };
 
   const userInfo = ref(null);
-
   const loginCheck = async () => {
     let url;
     const portal = import.meta.env.VITE_APP_PORTAL;
@@ -80,8 +80,24 @@ export const useMainStore = defineStore("main", () => {
     }
     return login;
   };
-  const langCode = ref(null);
+  const langCode = ref({});
   const SideMenuVisible = ref(true);
+
+  const openInHiddenIframe = async (url) => {
+    // iframe 요소 생성
+    const iframe = document.createElement('iframe');
+
+    // iframe의 스타일을 설정하여 시각적으로 숨김
+    iframe.style.position = 'absolute';
+    iframe.style.width = '0px';
+    iframe.style.height = '0px';
+
+    // iframe의 src 속성에 URL을 설정
+    iframe.src = url;
+
+    // iframe을 body에 추가하여 문서에 포함
+    document.body.appendChild(iframe);
+  }
 
   const getMydrive = async () => {
     const keySize = 128;
@@ -93,23 +109,55 @@ export const useMainStore = defineStore("main", () => {
     const id = userInfo.value?.OrgDbUserDocumentData.empno;
     const key = new Date().getTime().toString();	// 시간값이 나온다. 이전 예제에서 Java System.currentTimeMillis()와 동일
     const myDriveURL = "https://kms.nexentire.com";
+    const stdURL = "https://stddoc.nexentire.com";
     const aesUtil = new AesUtil(keySize, iterationCount);
     const enc_id = aesUtil.encrypt(salt, iv, key, id);
     const dec_id = aesUtil.decrypt(salt, iv, key, enc_id);
 
     const lang = langCode.value.toUpperCase();
-    const url = `${myDriveURL}/login/index.jsp?user_id=${encodeURIComponent(enc_id)}&key=${key}&ctype=PORTAL&lang=${lang}`
-    // console.log("url", url);
+    const d_url = `${myDriveURL}/login/index.jsp?user_id=${encodeURIComponent(enc_id)}&key=${key}&ctype=PORTAL&lang=${lang}`
+    // const s_url = `/getStddocSession/xclickr31_nxt/cef/sso/receiveSso.jsp?user_id=${encodeURIComponent(enc_id)}&key=${key}&login_locale=${langCode.value}`
 
-    const option = {
-      url: url
-    };
+    const newWindow = window.open(d_url, '_blank', 'position=absolute,width=1,height=1,left=-10000px,top=-10000px');
+    // newWindow.blur();
+    window.focus()
+    // openInHiddenIframe(d_url);
+    // openInHiddenIframe(s_url);
 
-    const res = await http.post(option);
+    const checkUrlChange = setInterval(() => {
+      if (newWindow.closed) {
+        // 새 창이 이미 닫힌 경우 체크 중지
+        clearInterval(checkUrlChange);
+      } else {
+        // 현재 창의 URL이 변경되었는지 확인
+        try {
+          if (newWindow.location.href.includes('/myspace/')) {
+            newWindow.close();
+            clearInterval(checkUrlChange);
+          }
+        } catch (e) {
+          // 다른 출처의 URL로 변경되면 접근이 제한될 수 있습니다.
+          // 이 경우 창을 닫고 체크를 중지합니다.
+          newWindow.close();
+          clearInterval(checkUrlChange);
+        }
+      }
+    }, 1000);
 
-    // console.log("res", res);
+    // const url = {
+    //   d_url: d_url,
+    //   s_url: s_url
+    // }
 
-    return res
+    // return url
+    // window.open(s_url)
+    // const option = {
+    //   url: s_url,
+    // };
+
+    // const res = await http.request(option);
+
+    // return res
   }
   // 검색어
   const searchvalue = ref(null);

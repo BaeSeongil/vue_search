@@ -18,6 +18,10 @@ import "@/assets/js/lib/jquery.mCustomScrollbar.concat.min.js";
 // import "@/assets/js/lib/common6_5.js"
 import "@/assets/js/swiper/swiper-bundle.min.js";
 
+import "@/assets/js/AesUtil.js"
+import "@/assets/js/aes.js"
+import "@/assets/js/pbkdf2.js"
+
 
 app.use(createPinia());
 app.use(router);

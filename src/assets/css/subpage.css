@@ -1551,7 +1551,7 @@
 }
 
 .approval .top-area ul>li>a>span {
-    color: var(--Point-red-400);
+    color: var(--btn_primary-default);
 }
 
 .approval .contents-area {
@@ -1577,7 +1577,7 @@
 }
 
 .approval .contents-area .sub-title>p>span {
-    color: var(--Point-red-400);
+    color: var(--btn_primary-default);
 }
 
 .approval .contents-area .timeline-wrap {
@@ -1598,7 +1598,7 @@
     display: block;
     width: 8px;
     height: 8px;
-    border: 4px solid var(--Point-red-400);
+    border: 4px solid var(--btn_primary-default);
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -1821,7 +1821,7 @@
 }
 
 .approval .contents-area .list-wrap>li>a .pagination .current {
-    color: var(--Point-red-400);
+    color: var(--btn_primary-default);
 }
 
 .approval .contents-area .list-wrap>li .progress-area {
@@ -1895,8 +1895,8 @@
 }
 
 .approval .contents-area .list-wrap>li .progress-item .progress-box.active {
-    background-color: var(--Point-red-400);
-    border: 1px solid var(--Point-red-400);
+    background-color: var(--btn_primary-default);
+    border: 1px solid var(--btn_primary-default);
     color: white;
     font-weight: 600;
 }
@@ -3214,7 +3214,7 @@
 }
 
 .article.option .board-area .badge.red {
-    background-color: var(--Point-red-400);
+    background-color: var(--btn_primary-default);
 }
 
 .article.option .board-area .badge.purple {
@@ -3938,7 +3938,7 @@
 }
 
 .team-board-wrap ul li .activity-wrap .action button:not(.btn-delete) span {
-    color: var(--Point-red-400);
+    color: var(--btn_primary-default);
 }
 
 .team-board-wrap ul li .activity-wrap .action button.btn-like {
@@ -4110,11 +4110,11 @@
 }
 
 .team-work-wrap.page-table.type1 .control-wrap .control-status .count.red:before {
-    background-color: var(--Point-red-400);
+    background-color: var(--btn_primary-default);
 }
 
 .team-work-wrap.page-table.type1 .control-wrap .control-status .count .num {
-    color: var(--Point-red-400);
+    color: var(--btn_primary-default);
 }
 
 .team-work-wrap.page-table.type1 table {
@@ -4175,7 +4175,7 @@
     left: -1px;
     width: calc(100% + 1px);
     height: 4px;
-    background-color: var(--Point-red-400);
+    background-color: var(--btn_primary-default);
 }
 
 .team-schedule {
@@ -5349,7 +5349,7 @@
     width: 8px;
     height: 8px;
     background-color: #fff;
-    border: 4px solid var(--Point-red-400);
+    border: 4px solid var(--btn_primary-default);
     border-radius: 50%;
 }
 
@@ -5361,7 +5361,7 @@
 #subPage .pad-wrap #contentWrap .default-wrap>div .pad-box .meeting-timeline .meeting-current .time {
     font-size: 15px;
     font-weight: 700;
-    color: var(--Point-red-400);
+    color: var(--btn_primary-default);
 }
 
 #subPage .pad-wrap #contentWrap .default-wrap>div .pad-box .meeting-timeline .meeting-current .title {
@@ -5504,7 +5504,7 @@
 }
 
 .search-wrap .search-total {
-    color: var(--Point-red-400);
+    color: var(--btn_primary-default);
     font-size: 20px;
 }
 
@@ -5654,23 +5654,29 @@
 .search-wrap .search-result-wrap .search-result-item .file-wrap .file {
     display: inline-flex !important;
     gap: 8px;
-    color: var(--Body-300);
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--Body-400);
 }
 
 .search-wrap .search-result-wrap .search-result-item .content {
     font-size: 18px;
     word-break: keep-all;
     overflow-wrap: break-word;
+    color: var(--Body-300);
+    font-weight: 400;
 }
 
 .search-wrap .search-result-wrap .search-result-item .keyword {
-    color: var(--Point-red-400);
+    color: var(--btn_primary-default);
 }
 
 .search-wrap .search-result-wrap .search-result-item .location {
     gap: 8px;
     margin-top: 16px;
-    color: var(--Body-300);
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--Body-200);
 }
 
 /* 펼쳤을때 */
@@ -6003,4 +6009,68 @@
     .subpage-menu-wrap .lnb-wrap .depth2>li a:hover {
         color: var(--Body-400);
     }
+}
+
+.ico_pdf {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/subpage/ico_pdf.svg);
+    background-repeat: no-repeat;
+}
+
+.ico_xls {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/subpage/ico_xls.svg);
+    background-repeat: no-repeat;
+}
+
+.ico_doc {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/subpage/ico_doc.svg);
+    background-repeat: no-repeat;
+}
+
+.ico_ppt {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/subpage/ico_ppt.svg);
+    background-repeat: no-repeat;
+}
+
+.ico_zip {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/subpage/ico_etc.svg);
+    background-repeat: no-repeat;
+}
+
+.ico_jpg {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/subpage/ico_jpg.svg);
+    background-repeat: no-repeat;
+}
+
+.ico_png {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/subpage/ico_jpg.svg);
+    background-repeat: no-repeat;
+}
+
+.ico_hwp {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/subpage/ico_hwp.svg);
+    background-repeat: no-repeat;
 }

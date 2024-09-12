@@ -151,6 +151,7 @@ export const http = {
 
         try {
             const response = await instance.post(url, data, options);
+            console.log("response", url);
             return response;
         } catch (error) {
             console.log("http.post.error", error);
