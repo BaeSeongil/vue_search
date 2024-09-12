@@ -131,7 +131,7 @@ export const useMainStore = defineStore("main", () => {
       } else {
         // 현재 창의 URL이 변경되었는지 확인
         try {
-          if (newWindow.location.href.includes('/myspace/')) {
+          if (!newWindow.location.href.includes('/login/') && newWindow.location.href.includes('/myspace/')) {
             newWindow.close();
             clearInterval(checkUrlChange);
           }
