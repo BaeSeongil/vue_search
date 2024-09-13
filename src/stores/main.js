@@ -116,13 +116,13 @@ export const useMainStore = defineStore("main", () => {
 
     const lang = langCode.value.toUpperCase();
     const d_url = `${myDriveURL}/login/index.jsp?user_id=${encodeURIComponent(enc_id)}&key=${key}&ctype=PORTAL&lang=${lang}`
-    // const s_url = `/getStddocSession/xclickr31_nxt/cef/sso/receiveSso.jsp?user_id=${encodeURIComponent(enc_id)}&key=${key}&login_locale=${langCode.value}`
+    const s_url = `${stdURL}/xclickr31_nxt/cef/sso/receiveSso.jsp?user_id=${encodeURIComponent(enc_id)}&key=${key}&login_locale=${langCode.value}`
 
     const newWindow = window.open(d_url, '_blank', 'position=absolute,width=1,height=1,left=-10000px,top=-10000px');
     // newWindow.blur();
     window.focus()
     // openInHiddenIframe(d_url);
-    // openInHiddenIframe(s_url);
+    // window.open(s_url);
 
     const checkUrlChange = setInterval(() => {
       if (newWindow.closed) {

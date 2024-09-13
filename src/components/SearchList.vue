@@ -734,9 +734,9 @@ const openUrl = async (data, info, name) => {
     }
   } else if (info === "표준") {
     // 문서 뷰어
-    const url = `https://stddoc.nexentire.com/xclickr31_nxt/CefSrchImageViewDispatcher?ecmdocid=${data.docid}&userid=${userInfo.value?.OrgDbUserDocumentData.empno}&locale=${langCode.value}`;
+    // const url = `https://stddoc.nexentire.com/xclickr31_nxt/CefSrchImageViewDispatcher?ecmdocid=${data.docid}&userid=${userInfo.value?.OrgDbUserDocumentData.empno}&locale=${langCode.value}`;
 
-    // const url = `https://kms.nexentire.com/standard/downdoc/${data.docid}?drmDec=false&userid=${userInfo.value?.OrgDbUserDocumentData.empno}`;
+    const url = `https://kms.nexentire.com/standard/downdoc/${data.docid}?drmDec=false&userid=${userInfo.value?.OrgDbUserDocumentData.empno}`;
     const link = document.createElement("a");
     link.href = url;
     link.download = ""; // You can set a filename here, or leave it empty to use the default filename

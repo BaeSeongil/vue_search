@@ -5669,6 +5669,7 @@
 
 .search-wrap .search-result-wrap .search-result-item .keyword {
     color: var(--btn_primary-default);
+    font-weight: bold;
 }
 
 .search-wrap .search-result-wrap .search-result-item .location {
