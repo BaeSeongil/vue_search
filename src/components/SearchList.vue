@@ -731,15 +731,15 @@ const openUrl = async (data, info, name) => {
       document.body.removeChild(link);
     } else {
       window.open(
-        `https://kms.nexentire.com/external/detail.jsp?type=${data.mapId}&pkey=${data.docId}`
+        `https://kms.nexentire.com/external/detail.jsp?type=${data.mapId}&pkey=${data.docId}`,
+        "kms", // 팝업 창 이름
+        "width=800,height=600,scrollbars=yes,resizable=yes" // 팝업 창 옵션
       );
     }
   } else if (info === "결재") {
     const doc = data.dbPath.replaceAll("\\", "/");
     window.open(
-      `https://kms.nexentire.com/external/detail.jsp?type=${data.mapId}&pkey=${data.docId}`,
-      "kms", // 팝업 창 이름
-      "width=800,height=600,scrollbars=yes,resizable=yes" // 팝업 창 옵션
+      `https://portalnew.nexentire.com/dwp/com/portal/main.nsf/wfrmpage?ReadForm&url=/${doc}/vdockey/${data.docKey}?opendocument%26popup=1`
     );
   } else if (info === "bbs") {
     window.open(`/vboard/boardread?key_unid=${data.docid}&popup=1&pre=1`);
