@@ -367,7 +367,7 @@
                       <div class="title-wrap flex-con p-be">
                         <p
                           class="title ellipse"
-                          @click="openUrl(item, '표준')"
+                          @click="openViewer(item)"
                           style="cursor: pointer"
                           v-html="processContent(item.title)"
                         ></p>
@@ -391,6 +391,8 @@
                               :class="'ico_' + fileType(item.fileExt)"
                             ></span>
                             <span
+                              style="cursor: pointer"
+                              @click="openfile(item)"
                               v-html="processContent(item.fileName)"
                             ></span></span
                         ></a>
@@ -732,27 +734,82 @@ const openUrl = async (data, info, name) => {
         `https://kms.nexentire.com/external/detail.jsp?type=${data.mapId}&pkey=${data.docId}`
       );
     }
-  } else if (info === "표준") {
-    // 문서 뷰어
-    // const url = `https://stddoc.nexentire.com/xclickr31_nxt/CefSrchImageViewDispatcher?ecmdocid=${data.docid}&userid=${userInfo.value?.OrgDbUserDocumentData.empno}&locale=${langCode.value}`;
-
-    const url = `https://kms.nexentire.com/standard/downdoc/${data.docid}?drmDec=false&userid=${userInfo.value?.OrgDbUserDocumentData.empno}`;
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = ""; // You can set a filename here, or leave it empty to use the default filename
-    link.target = "_blank";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   } else if (info === "결재") {
     const doc = data.dbPath.replaceAll("\\", "/");
     window.open(
-      `https://portalnew.nexentire.com/dwp/com/portal/main.nsf/wfrmpage?ReadForm&url=/${doc}/vdockey/${data.docKey}?opendocument%26popup=1`
+      `https://kms.nexentire.com/external/detail.jsp?type=${data.mapId}&pkey=${data.docId}`,
+      "kms", // 팝업 창 이름
+      "width=800,height=600,scrollbars=yes,resizable=yes" // 팝업 창 옵션
     );
   } else if (info === "bbs") {
     window.open(`/vboard/boardread?key_unid=${data.docid}&popup=1&pre=1`);
   }
 };
+
+const openViewer = (data) => {
+  var popupWidth = 950;
+  var popupHeight = 700;
+
+  var popupX = window.screen.width / 2 - popupWidth / 2;
+  var popupY = window.screen.height / 2 - popupHeight / 2;
+
+  var url =
+    "https://stddoc.nexentire.com/xclickr31_nxt/cef/edms/cefEdmsSearchReceive.jsp";
+  /* post */
+  var form = document.createElement("form");
+  form.setAttribute("method", "post");
+  form.setAttribute("action", url);
+  form.setAttribute("target", "ECM");
+
+  var input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "userid";
+  input.value = userInfo.value?.OrgDbUserDocumentData.empno;
+  form.appendChild(input);
+
+  input = document.createElement("input");
+  input.type = "hidden";
+  input.name = "docId";
+  input.value = data.docid;
+  form.appendChild(input);
+  document.body.appendChild(form);
+  window.open(
+    url,
+    "ECM",
+    "width=" +
+      popupWidth +
+      ",height=" +
+      popupHeight +
+      ",left=" +
+      popupX +
+      ",top=" +
+      popupY +
+      ",scrollbars=yes,resizable=yes"
+  );
+  form.submit();
+
+  document.body.removeChild(form);
+};
+
+const openfile = (data) => {
+  // 표준문서 문서 뷰어로 열기
+
+  const url = `https://stddoc.nexentire.com/xclickr31_nxt/CefSrchImageViewDispatcher?ecmdocid=${data.cefEcmDocid}&userid=${userInfo.value?.OrgDbUserDocumentData.empno}&locale=${langCode.value}`;
+
+  window.open(url, "_blank");
+
+  // 표준문서 파일 다운로드
+  // const url = `https://kms.nexentire.com/standard/downdoc/${data.cefEcmDocid}?drmDec=true&userid=${userInfo.value?.OrgDbUserDocumentData.empno}`;
+  // console.log("file down", url);
+  // const link = document.createElement("a");
+  // link.href = url;
+  // link.download = ""; // You can set a filename here, or leave it empty to use the default filename
+  // link.target = "_blank";
+  // document.body.appendChild(link);
+  // link.click();
+  // document.body.removeChild(link);
+};
+
 const fileType = (file) => {
   if (file === "pptx" || file === "ppt") {
     return "ppt";

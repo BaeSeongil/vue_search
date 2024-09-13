@@ -120,10 +120,10 @@ export const useMainStore = defineStore("main", () => {
 
     const newWindow = window.open(d_url, '_blank', 'position=absolute,width=1,height=1,left=-10000px,top=-10000px');
     // newWindow.blur();
-    window.focus()
+    newWindow.focus()
     // openInHiddenIframe(d_url);
-    // window.open(s_url);
-
+    const newWindow_sso = window.open(s_url, '_blank', 'position=absolute,width=1,height=1,left=-10000px,top=-10000px');
+    newWindow_sso.focus();
     const checkUrlChange = setInterval(() => {
       if (newWindow.closed) {
         // 새 창이 이미 닫힌 경우 체크 중지
@@ -144,6 +144,26 @@ export const useMainStore = defineStore("main", () => {
       }
     }, 1000);
 
+
+    const checkUrlChange_sso = setInterval(() => {
+      if (newWindow_sso.closed) {
+        // 새 창이 이미 닫힌 경우 체크 중지
+        clearInterval(checkUrlChange_sso);
+      } else {
+        // 현재 창의 URL이 변경되었는지 확인
+        try {
+          if (!newWindow_sso.location.href.includes('/receiveSso.jsp/') && newWindow_sso.location.href.includes('/main.jsp/')) {
+            newWindow_sso.close();
+            clearInterval(checkUrlChange_sso);
+          }
+        } catch (e) {
+          // 다른 출처의 URL로 변경되면 접근이 제한될 수 있습니다.
+          // 이 경우 창을 닫고 체크를 중지합니다.
+          newWindow_sso.close();
+          clearInterval(checkUrlChange_sso);
+        }
+      }
+    }, 1000);
     // const url = {
     //   d_url: d_url,
     //   s_url: s_url
