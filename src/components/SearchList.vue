@@ -738,11 +738,26 @@ const openUrl = async (data, info, name) => {
     }
   } else if (info === "결재") {
     const doc = data.dbPath.replaceAll("\\", "/");
-    window.open(
-      `https://portalnew.nexentire.com/dwp/com/portal/main.nsf/wfrmpage?ReadForm&url=/${doc}/vdockey/${data.docKey}?opendocument%26popup=1`
-    );
+    if(data.migration === '1') {
+      window.open(
+        `/dwp/com/portal/main.nsf/wfrmpage?ReadForm&url=/${doc}/vdockey/${data.docKey}?opendocument%26popup=1`,
+        "NEXENTIRE",
+        "width=800,height=600,scrollbars=yes,resizable=yes"
+      );
+    } else {
+      const url = `/vapproval/document?dockey=${data.docKey}&popup=1&pre=1&prehe=true`
+      window.open(
+        url,
+        "NEXENTIRE",
+        "width=800,height=600,scrollbars=yes,resizable=yes"
+      );
+    }
   } else if (info === "bbs") {
-    window.open(`/vboard/boardread?key_unid=${data.docid}&popup=1&pre=1`);
+    window.open(
+      `/vboard/boardread?key_unid=${data.docid}&popup=1&pre=1`, 
+      "NEXENTIRE",
+      "width=800,height=600,scrollbars=yes,resizable=yes"
+    );
   }
 };
 

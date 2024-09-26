@@ -5546,6 +5546,27 @@
     border-bottom-right-radius: 6px;
 }
 
+.search-wrap .btn-group-wrap .switch-menu>li:first-child button:hover {
+    border-right: 1px solid var(--ui_line-250);
+    background-color: var(--ui_solid-100);
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.search-wrap .btn-group-wrap .switch-menu>li.active:last-child button:hover {
+    border-right: 1px solid var(--ui_line-250);
+    background-color: var(--ui_solid-500);
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.search-wrap .btn-group-wrap .switch-menu>li.active:first-child button:hover {
+    border-right: 1px solid var(--ui_line-250);
+    background-color: var(--ui_solid-500);
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
 .search-wrap .btn-group-wrap .switch-menu>li.active>button {
     background-color: var(--icon-400);
     border-color: var(--icon-400);
