@@ -142,7 +142,7 @@ export const useMainStore = defineStore("main", () => {
           clearInterval(checkUrlChange);
         }
       }
-    }, 1000);
+    }, 2000);
 
 
     const checkUrlChange_sso = setInterval(() => {
@@ -163,7 +163,7 @@ export const useMainStore = defineStore("main", () => {
           clearInterval(checkUrlChange_sso);
         }
       }
-    }, 1000);
+    }, 2000);
     // const url = {
     //   d_url: d_url,
     //   s_url: s_url
