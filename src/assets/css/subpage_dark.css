@@ -5370,10 +5370,10 @@
         -o-transform: translateX(330px);
     }
 
-    #subPage.search.active {
-        width: calc(100% - 240px);
-        transform: translateX(240px);
-    }
+}
+#subPage.search.active {
+    width: calc(100% - 240px);
+    transform: translateX(240px);
 }
 
 @media all and (max-width: 1600px) {
