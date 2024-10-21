@@ -720,6 +720,9 @@ watch(lnbActive, () => {
 });
 
 const openUrl = async (data, info, name) => {
+  const width = window.screen.availWidth;
+  const height = window.screen.availHeight;
+  
   if (info === "중앙") {
     if (name === "explorer") {
       const url = `https://kms.nexentire.com/my/files/${data.id}/content`;
@@ -733,7 +736,7 @@ const openUrl = async (data, info, name) => {
       window.open(
         `https://kms.nexentire.com/external/detail.jsp?type=${data.mapId}&pkey=${data.docId}`,
         "kms", // 팝업 창 이름
-        "width=800,height=600,scrollbars=yes,resizable=yes" // 팝업 창 옵션
+        `width=${width},height=${height},left=0,top=0` // 팝업 창 옵션
       );
     }
   } else if (info === "결재") {
@@ -742,21 +745,21 @@ const openUrl = async (data, info, name) => {
       window.open(
         `/dwp/com/portal/main.nsf/wfrmpage?ReadForm&url=/${doc}/vdockey/${data.docKey}?opendocument%26popup=1`,
         "NEXENTIRE",
-        "width=800,height=600,scrollbars=yes,resizable=yes"
+        `width=${width},height=${height},left=0,top=0`
       );
     } else {
       const url = `/vapproval/document?dockey=${data.docKey}&popup=1&pre=1&prehe=true`
       window.open(
         url,
         "NEXENTIRE",
-        "width=800,height=600,scrollbars=yes,resizable=yes"
+        `width=${width},height=${height},left=0,top=0`
       );
     }
   } else if (info === "bbs") {
     window.open(
       `/vboard/boardread?key_unid=${data.docid}&popup=1&pre=1`, 
       "NEXENTIRE",
-      "width=800,height=600,scrollbars=yes,resizable=yes"
+      `width=${width},height=${height},left=0,top=0`
     );
   }
 };
