@@ -765,8 +765,8 @@ const openUrl = async (data, info, name) => {
 };
 
 const openViewer = (data) => {
-  var popupWidth = 950;
-  var popupHeight = 700;
+  var popupWidth = window.screen.availWidth;
+  var popupHeight = window.screen.availHeight;
 
   var popupX = window.screen.width / 2 - popupWidth / 2;
   var popupY = window.screen.height / 2 - popupHeight / 2;
